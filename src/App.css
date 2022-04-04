@@ -1,0 +1,30 @@
+body {
+	background-color: #000;
+}
+.gifs {
+	margin: 0 auto;
+	width: 80%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.gif {
+	padding: 0 2px;
+}
+.loading {
+	margin-top: 20px;
+}
+
+.error {
+	color: #fff;
+	margin-top: 20px;
+	font-size: 30px;
+	display: flex;
+	flex-direction: column;
+}
+
+.error > .error__title {
+	margin-bottom: 20px;
+	text-align: center;
+}
