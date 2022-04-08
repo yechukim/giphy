@@ -1,11 +1,14 @@
-function Pagination(props) {
+import { PaginationPropType } from 'Giphy'
+
+function Pagination(props: PaginationPropType) {
 	const { pageSelected, itemPerPage, totalItems, currentPage } = props
-	const pageNumbers = []
+	const pageNumbers: number[] = []
 
-	const pages = Math.ceil(totalItems / itemPerPage)
-
-	for (let i = 1; i <= pages; i++) {
-		pageNumbers.push(i)
+	if (totalItems) {
+		const pages = Math.ceil(totalItems / itemPerPage)
+		for (let i = 1; i <= pages; i++) {
+			pageNumbers.push(i)
+		}
 	}
 
 	const inactive = 'page-item'

@@ -15,4 +15,11 @@ declare module 'Giphy' {
 		id: string
 		images: object
 	}
+
+	type PaginationPropType = {
+		pageSelected: (page: number) => void
+		currentPage: number
+		itemPerPage: number
+		totalItems?: number
+	}
 }
