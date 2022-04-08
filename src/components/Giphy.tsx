@@ -44,7 +44,6 @@ function Giphy() {
 		if (!result) return
 		setData(result.data)
 		setIsLoading(false)
-		setKeyword('')
 	}
 
 	const renderGifs = () => {
