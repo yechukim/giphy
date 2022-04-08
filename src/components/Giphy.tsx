@@ -4,6 +4,7 @@ import { fetchData } from '../api/fetch'
 import Loading from './Loading'
 import Error from './Error'
 import { SEARCH, TRENDING } from '../constant'
+import Pagination from './Pagination'
 
 function Giphy() {
 	const [data, setData] = useState<[]>()
@@ -11,6 +12,12 @@ function Giphy() {
 	const [isLoading, setIsLoading] = useState(false)
 	const [isError, setIsError] = useState(false)
 	const [keyword, setKeyword] = useState<string>('')
+
+	const [currentPage, setCurrentPage] = useState(1)
+	const [itemPerPage, setItemPerPag] = useState(20)
+	const indexOfLastItem = currentPage * itemPerPage
+	const indexOfFirstItem = indexOfLastItem - itemPerPage
+	const currentItems = data?.slice(indexOfFirstItem, indexOfLastItem)
 
 	useEffect(() => {
 		const request = async () => {
@@ -49,7 +56,7 @@ function Giphy() {
 	const renderGifs = () => {
 		if (isLoading) return <Loading />
 
-		return data?.map((elem: GifImage) => {
+		return currentItems?.map((elem: GifImage) => {
 			return (
 				<div key={elem.id} className="gif">
 					<img src={elem.images.fixed_height.url} alt="gif" />
@@ -63,6 +70,10 @@ function Giphy() {
 		return <Error />
 	}
 
+	const pageSelected = (pageNum: number) => {
+		console.log(pageNum)
+		setCurrentPage(pageNum)
+	}
 	return (
 		<div className="m-2 text-center ">
 			{renderError()}
@@ -82,6 +93,12 @@ function Giphy() {
 					Go
 				</button>
 			</form>
+			<Pagination
+				pageSelected={pageSelected}
+				currentPage={currentPage}
+				itemPerPage={itemPerPage}
+				totalItems={data?.length}
+			/>
 			<div className="container gifs">{renderGifs()}</div>
 		</div>
 	)
