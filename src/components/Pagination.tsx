@@ -1,4 +1,5 @@
 import { PaginationPropType } from 'Giphy'
+import { Page } from '../constant'
 
 function Pagination(props: PaginationPropType) {
 	const { pageSelected, itemPerPage, totalItems, currentPage } = props
@@ -10,17 +11,17 @@ function Pagination(props: PaginationPropType) {
 			pageNumbers.push(i)
 		}
 	}
-
-	const inactive = 'page-item'
-	const active = 'page-item active'
-
 	return (
 		<nav>
 			<ul className="pagination pagination-lg d-flex justify-content-center">
 				{pageNumbers.map((pagenumber) => (
 					<li
 						key={pagenumber}
-						className={pagenumber === currentPage ? active : inactive}
+						className={
+							pagenumber === currentPage
+								? Page.CLASS_ACTIVE
+								: Page.CLASS_INACTIVE
+						}
 					>
 						<a onClick={() => pageSelected(pagenumber)} className="page-link">
 							{pagenumber}

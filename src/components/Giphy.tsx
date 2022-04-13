@@ -3,7 +3,7 @@ import { GifImage, PaginationType } from 'Giphy'
 import { fetchData } from '../api/fetch'
 import Loading from './Loading'
 import Error from './Error'
-import { Api } from '../constant'
+import { Api, Page } from '../constant'
 import Pagination from './Pagination'
 
 function Giphy() {
@@ -11,10 +11,10 @@ function Giphy() {
 	const [pagination, setPagination] = useState<PaginationType>()
 	const [isLoading, setIsLoading] = useState(false)
 	const [isError, setIsError] = useState(false)
-	const [keyword, setKeyword] = useState<string>('')
+	const [keyword, setKeyword] = useState('')
 
-	const [currentPage, setCurrentPage] = useState(1)
-	const [itemPerPage, setItemPerPag] = useState(20)
+	const [currentPage, setCurrentPage] = useState(Page.START)
+	const [itemPerPage, setItemPerPage] = useState(Page.EACH)
 	const indexOfLastItem = currentPage * itemPerPage
 	const indexOfFirstItem = indexOfLastItem - itemPerPage
 	const currentItems = data?.slice(indexOfFirstItem, indexOfLastItem)
@@ -71,7 +71,6 @@ function Giphy() {
 	}
 
 	const pageSelected = (pageNum: number) => {
-		console.log(pageNum)
 		setCurrentPage(pageNum)
 	}
 	return (
