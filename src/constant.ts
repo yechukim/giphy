@@ -1,3 +1,5 @@
-export const BASE_URL = 'https://api.giphy.com/v1'
-export const TRENDING = '/gifs/trending'
-export const SEARCH = '/gifs/search'
+export const Api = {
+	BASE_URL: 'https://api.giphy.com/v1',
+	TRENDING_URL: '/gifs/trending',
+	SEARCH_URL: '/gifs/search',
+} as const

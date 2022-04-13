@@ -3,7 +3,7 @@ import { GifImage, PaginationType } from 'Giphy'
 import { fetchData } from '../api/fetch'
 import Loading from './Loading'
 import Error from './Error'
-import { SEARCH, TRENDING } from '../constant'
+import { Api } from '../constant'
 import Pagination from './Pagination'
 
 function Giphy() {
@@ -23,7 +23,7 @@ function Giphy() {
 		const request = async () => {
 			setIsLoading(true)
 			try {
-				const result = await fetchData(TRENDING)
+				const result = await fetchData(Api.TRENDING_URL)
 				if (!result) return
 
 				setData(result.data)
@@ -47,7 +47,7 @@ function Giphy() {
 		e.preventDefault()
 		if (!keyword) alert('no keyword ;)')
 		setIsLoading(true)
-		const result = await fetchData(SEARCH, keyword)
+		const result = await fetchData(Api.SEARCH_URL, keyword)
 		if (!result) return
 		setData(result.data)
 		setIsLoading(false)

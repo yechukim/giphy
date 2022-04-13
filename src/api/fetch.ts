@@ -1,10 +1,10 @@
-import axios, { AxiosError } from 'axios'
+import axios from 'axios'
 import { DataType } from 'Giphy'
-import { BASE_URL } from '../constant'
+import { Api } from '../constant'
 import { API_KEY } from './key'
 
 const instance = axios.create({
-	baseURL: BASE_URL,
+	baseURL: Api.BASE_URL,
 	headers: {
 		'Content-type': 'application/json',
 	},
@@ -22,7 +22,7 @@ export const fetchData = async (
 			},
 		})
 		return response.data
-	} catch (error: Error | AxiosError) {
-		console.error(error.message)
+	} catch (error) {
+		console.error(error)
 	}
 }
